@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav")
   const navBurger = document.querySelector(".nav-burger")
   const mobileMenu = document.querySelector(".mobile-menu")
-  const mobileLinks = document.querySelectorAll(".mobile-link, .mobile-cta")
+  const mobileLinks = document.querySelectorAll(".mobile-link")
 
   function getCurrentLanguage() {
     return document.documentElement.lang || localStorage.getItem(LANGUAGE_STORAGE_KEY) || "en"
@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // ===== Magnetic Button Effect =====
-  const magneticBtns = document.querySelectorAll(".btn-primary, .btn-cta, .nav-cta")
+  const magneticBtns = document.querySelectorAll(".btn-primary, .btn-cta")
 
   magneticBtns.forEach((btn) => {
     btn.addEventListener("mousemove", (e) => {
