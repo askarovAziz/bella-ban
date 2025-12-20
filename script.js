@@ -243,90 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== Form Submission =====
-  const bookingForm = document.getElementById("bookingForm")
-  const timeSelect = document.getElementById("time")
-
-  function formatTime(totalMinutes) {
-    const hours = Math.floor(totalMinutes / 60)
-    const minutes = totalMinutes % 60
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
-  }
-
-  function populateTimeOptions(selectEl) {
-    if (!selectEl) return
-
-    const startMinutes = 12 * 60
-    const endMinutes = 21 * 60
-
-    for (let minutes = startMinutes; minutes < endMinutes; minutes += 15) {
-      const startLabel = formatTime(minutes)
-      const endLabel = formatTime(Math.min(minutes + 15, endMinutes))
-      const option = document.createElement("option")
-      option.value = `${startLabel}-${endLabel}`
-      option.textContent = `${startLabel} - ${endLabel}`
-      selectEl.appendChild(option)
-    }
-  }
-
-  populateTimeOptions(timeSelect)
-
-  if (bookingForm) {
-    bookingForm.addEventListener("submit", (e) => {
-      e.preventDefault()
-
-      const formData = new FormData(bookingForm)
-      const data = Object.fromEntries(formData)
-
-      const currentLang = getCurrentLanguage()
-      const dict = window.translations?.[currentLang] || window.translations?.ru || {}
-      const labels = {
-        header: dict["form.whatsapp.header"] || "🌸 New request from the Bellacures website!\n\n",
-        name: dict["form.whatsapp.nameLabel"] || "👤 Name",
-        phone: dict["form.whatsapp.phoneLabel"] || "📱 Phone",
-        service: dict["form.whatsapp.serviceLabel"] || "💅 Service",
-        date: dict["form.whatsapp.dateLabel"] || "📅 Date",
-        time: dict["form.whatsapp.timeLabel"] || "⏰ Time",
-        comment: dict["form.whatsapp.commentLabel"] || "💬 Comment",
-      }
-      const defaultComment = dict["form.whatsapp.defaultMessage"] || "Not provided"
-
-      const userComment = data.message?.trim() ? data.message : defaultComment
-      const userTime = data.time?.trim() ? data.time : defaultComment
-
-      // Create WhatsApp message
-      const serviceKey = data.service
-      const serviceText = (serviceKey && dict[serviceKey]) || data.service
-
-      const message =
-        `${labels.header}` +
-        `${labels.name}: ${data.name}\n` +
-        `${labels.phone}: ${data.phone}\n` +
-        `${labels.service}: ${serviceText}\n` +
-        `${labels.date}: ${data.date}\n` +
-        `${labels.time}: ${userTime}\n` +
-        `${labels.comment}: ${userComment}`
-
-      // Redirect to WhatsApp
-      window.open(`https://wa.me/971507724752?text=${encodeURIComponent(message)}`, "_blank")
-
-      // Reset form with animation
-      bookingForm.reset()
-
-      // Show success feedback
-      const submitBtn = bookingForm.querySelector(".submit-btn")
-      const originalText = submitBtn.innerHTML
-      const successText = dict["form.whatsapp.success"] || "Sent!"
-      submitBtn.innerHTML = `<span>${successText}</span> ✓`
-      submitBtn.style.background = "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)"
-
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText
-        submitBtn.style.background = ""
-      }, 3000)
-    })
-  }
-
   // ===== Scroll Animations =====
   function initAnimations() {
     const animatedElements = document.querySelectorAll(
@@ -512,7 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===== Ripple Effect for Buttons =====
-  document.querySelectorAll(".btn-primary, .submit-btn").forEach((btn) => {
+  document.querySelectorAll(".btn-primary").forEach((btn) => {
     btn.addEventListener("click", function (e) {
       const rect = this.getBoundingClientRect()
       const x = e.clientX - rect.left
@@ -617,13 +533,6 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   lazyImages.forEach((img) => imageObserver.observe(img))
-
-  // ===== Set minimum date for booking =====
-  const dateInput = document.getElementById("date")
-  if (dateInput) {
-    const today = new Date().toISOString().split("T")[0]
-    dateInput.setAttribute("min", today)
-  }
 
   // ===== Service Cards Stagger Animation =====
   const serviceCards = document.querySelectorAll(".service-card")
