@@ -1351,33 +1351,6 @@ img {
   z-index: 2;
 }
 
-.about-badge {
-  position: absolute;
-  bottom: 80px;
-  left: 280px;
-  background: var(--accent-gradient);
-  padding: 1.5rem 2rem;
-  border-radius: 16px;
-  text-align: center;
-  z-index: 3;
-  box-shadow: 0 20px 40px var(--accent-glow);
-}
-
-.badge-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--bg-primary);
-}
-
-.badge-text {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--bg-primary);
-  opacity: 0.9;
-}
-
 .about-text .section-tag {
   margin-bottom: 1rem;
 }
@@ -3218,16 +3191,6 @@ img {
   .img-2 {
     width: 200px;
     height: 260px;
-  }
-
-  .about-badge {
-    left: 180px;
-    bottom: 50px;
-    padding: 1rem 1.5rem;
-  }
-
-  .badge-number {
-    font-size: 2rem;
   }
 
   .map-overlay {
