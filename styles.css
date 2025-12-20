@@ -1587,8 +1587,8 @@ img {
 
 .booking-content {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
   align-items: start;
 }
 
@@ -1694,97 +1694,36 @@ img {
   stroke: var(--bg-primary);
 }
 
-.booking-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+.booking-cta {
   background: var(--bg-glass);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--border-radius);
-  padding: 2.5rem;
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
 }
 
-.form-group {
-  position: relative;
+.booking-note {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-.form-group.full-width {
-  grid-column: span 2;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: var(--bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--text-primary);
-  transition: var(--transition-fast);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.1);
-}
-
-.form-group label {
-  position: absolute;
-  left: 1.25rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1rem;
-  color: var(--text-muted);
-  pointer-events: none;
-  transition: var(--transition-fast);
-}
-
-.form-group textarea + label {
-  top: 1rem;
-  transform: none;
-}
-
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group select:focus + label,
-.form-group select:valid + label,
-.form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label {
-  top: 0;
-  left: 1rem;
-  font-size: 0.75rem;
-  background: var(--bg-secondary);
-  padding: 0 0.5rem;
-  color: var(--accent-primary);
-}
-
-.submit-btn {
-  grid-column: span 2;
+.booking-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1.125rem 2rem;
-  background: var(--accent-gradient);
-  border: none;
-  border-radius: 50px;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--bg-primary);
-  cursor: pointer;
-  transition: var(--transition-smooth);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px var(--accent-glow);
+.booking-actions .btn-primary,
+.booking-actions .btn-secondary {
+  width: fit-content;
+}
+
+.booking-hint {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 /* ===== Map Section ===== */
@@ -3109,16 +3048,6 @@ img {
   .testimonial-card {
     min-width: 300px;
     padding: 1.5rem;
-  }
-
-  .booking-form {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-  }
-
-  .form-group.full-width,
-  .submit-btn {
-    grid-column: span 1;
   }
 
   .footer {
